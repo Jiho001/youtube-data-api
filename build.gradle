@@ -32,6 +32,9 @@ dependencies {
 	implementation 'com.google.api-client:google-api-client:1.33.0'
 	implementation 'com.google.apis:google-api-services-youtube:v3-rev20230816-2.0.0'
 	implementation 'com.google.http-client:google-http-client-jackson2:1.39.2'
+	// https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+	implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.16'
+
 
 }
 
