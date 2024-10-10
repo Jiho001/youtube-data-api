@@ -7,4 +7,8 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class MyConfiguration {
 
+    @Bean
+    public RestClient restClient() {
+        return RestClient.create();
+    }
 }
