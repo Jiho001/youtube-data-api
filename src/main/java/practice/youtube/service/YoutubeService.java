@@ -1,4 +1,4 @@
-package practice.youtube;
+package practice.youtube.service;
 
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
@@ -18,14 +18,6 @@ public class YoutubeService {
     @Value("${youtube.api.key}")
     private String apiKey;
 
-    public void saveYoutube1() {
-        RestTemplate restTemplate = new RestTemplate();
-        String url = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=" + "[검색어]&" +
-                "key=" + apiKey;
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        String resBody = response.getBody();
-
-    }
 
 
 }

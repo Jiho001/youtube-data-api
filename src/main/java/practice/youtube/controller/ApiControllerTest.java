@@ -1,13 +1,12 @@
-package practice.youtube;
+package practice.youtube.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestClient;
-import practice.domain.Essay;
+import practice.youtube.domain.Essay;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 

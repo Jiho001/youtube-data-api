@@ -1,4 +1,4 @@
-package practice.domain;
+package practice.youtube.domain;
 
 
 import lombok.Getter;
