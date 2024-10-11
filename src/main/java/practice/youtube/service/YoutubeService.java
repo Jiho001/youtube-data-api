@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,26 +35,34 @@ public class YoutubeService {
     public String getVideoIdsAsString() {
         return String.join(",", videoIds);
     }
-    
 
     public String callAPI() {
         log.info("apiKey: {}", apiKey);
         String ids = getVideoIdsAsString();
+        String url = UriComponentsBuilder.newInstance()
+                .scheme("https")
+                .host("www.googleapis.com")
+                .path("/youtube/v3/videos")
+                .queryParam("part", "snippet")
+                .queryParam("id", ids)
+                .queryParam("key", apiKey)
+                .build()
+                .toUriString();
+
+        log.info("Request URL: {}", url);
+
         ResponseEntity<String> response = restClient.get()
-                .uri(uriBuilder -> uriBuilder
-                        .scheme("https")
-                        .host("www.googleapis.com")
-                        .path("/youtube/v3/videos")
-                        .queryParam("part", "snippet")
-                        .queryParam("id", ids)
-                        .queryParam("key", apiKey)
-                        .build())
+                .uri(url)
+                .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .retrieve()
                 .toEntity(String.class);
 
-        return response.getBody();
+        log.info("Response status: {}", response.getStatusCode());
+        log.info("Response headers: {}", response.getHeaders());
+        log.info("Response body: {}", response.getBody());
 
+        return response.getBody();
     }
 
 
